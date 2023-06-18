@@ -1,0 +1,11 @@
+  Crear una aplicacion que sin modificar el codigo el siguiente texto  por pantalla durante los logs de la compilación
+  
+  "Compilado en fecha YYYY MM AA"
+  
+  Nota: utilizamos ejercicio "Customizacion con s2i" llamado bc/exam1
+
+		
+
+ 
+	
+	

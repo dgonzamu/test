@@ -1,0 +1,5 @@
+Crear una aplicación node y exponer su servicio. Código en carpeta adjunta nodejs-helloworld, que habrá que subir a git.
+Se utiliza de referencia https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps como repositorio
+
+
+Nota: pasar como variable npm_config_registry con valor http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs

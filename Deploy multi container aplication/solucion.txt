@@ -1,0 +1,42 @@
+$ helm create exam
+$ tree
+
+
+$ vim Chart.yaml
+	Editamos Chart:
+		version: 0.1.1
+		appVersion: "latest"
+
+$ vim values.yaml
+	Editamos la imagen:
+	image: quay.io/redhattraining/webphp
+	tag: "v2"
+	
+$ helm install exam ./exam
+
+$ helm list 
+   Comprobamos que el chartversion es exam-0.1.1 y appVersion es latest
+
+
+$ oc get pods # vemos que no acaba de arrancar
+$ oc describe pod exam.... # no está correctamente configurado el puerto de livenes/readines
+$ oc get svc # vemos que el servicio está creado
+$ oc get routes # vemos que no tiene ruta asociada
+
+$ helm uninstall exam 
+$ vim values.yaml
+	Editamos puerto servicio (8080)
+$ vim template/deployment.yaml
+	Editamos puerto contenedor y liveness y readiness (8080)
+	editamos Ingress
+	ingress: 
+		enabled: true
+		hosts: 
+			- host: exam.${domain}
+	
+
+$ helm install exam ./exam
+$ oc get pods 
+$ oc get svc
+$ oc get routes
+$ curl exam.${domain}

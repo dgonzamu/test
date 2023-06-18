@@ -1,0 +1,20 @@
+Solucion
+
+*Se puede buscar en la documentación disponible en el examen
+
+	1 - oc patch configs.imageregistry.operator.openshift.io/cluster --patch '{"spec":{"defaultRoute":true}}' --type=merge
+
+Descargar imagen de project que no ve el usuario dado (namespace-a
+	
+	1 - Obtener ruta de image registry
+	    HOST=$(oc get route default-route -n openshift-image-registry --template='{{ .spec.host }}')
+		o simplemente oc get route en openshift-image-registry y mirar
+	
+    2 - login en el registry
+        podman login -u kubeadmin -p $(oc whoami -t) --tls-verify=false $HOST
+        -- el tls-verify=false es habitual. 
+
+    3 - Descarga de imagen 
+        - El login ya habra dejado las credenciales en el correspondiente .auth
+          podman pull registry/namespace/imagen --tls-verify=false
+          skopeo copy 		  

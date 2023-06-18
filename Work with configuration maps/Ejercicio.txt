@@ -1,0 +1,5 @@
+Crear una aplicación llamada deploymaps
+Añadirle un configMap llamado sedice y con la variable var=test, sin que este la actualice. Tenemos que asegurar que en el próximo reinicio el pod coge las variables. 
+  
+
+  

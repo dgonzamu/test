@@ -1,0 +1,9 @@
+Crear helm llamado exam
+Editar:
+	- versión: 0.1.1
+	- app tag: latest
+	- imagen: quay.io/redhattraining/webphp versión v2
+	- exponer el servicio
+	- editar liveness y readiness
+	- Poner una replica en cada nodo
+	

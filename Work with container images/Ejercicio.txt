@@ -1,0 +1,6 @@
+Modificar Containerfile facilitado y desplegarlo en Quay:
+ - Las imagen no para que no supere las 7 (3 en nuestri caso) capas y no pese mas de 256Mb
+ - La imagen debe poder  heredar, y que al compilar las imágenes hijas copie los ficheros de la carpeta src/  a la ./ del contenedor
+ - Te facilitan un usuario con los permisos necesarios, el 1001
+ 
+ Nota: el container debe de poderse descargar y ejecutar correctamente. Para ello testear el puerto, que siguiendo las buenas práctivas debería ser el 8080. Además ha de seguir las buenas prácticas que marca Red Hat

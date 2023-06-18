@@ -1,0 +1,35 @@
+$ git clone https://github.com/user/DO288-apps
+$ cd DO288-apps/s2i-scripts
+$ git checkout main
+$ git checkout -b exam1
+$ git push -u origin exam1
+
+$ tree -a# para ver el listado de directorios
+
+ Editar assemble para copiar ficheros
+ $ tree -a# para ver el listado de directorios
+ $ cd .s2i/bin/
+ $ vim assemble
+	añadir  en la sección customize
+			 cp -Rf /tmp/src/*html ./
+			 echo "files copied"
+			 DATE= `date "+%Y %m %d %T"`
+			 echo "Page built on $DATE" >> ./info.html
+			 echo "Generated file info"
+			 
+	
+ $ git commit -am "Assemble custom"
+ $ git push
+ 
+   oc new-app --name ... imagebuilderimage~http://repo.git 
+   ( si la imagen dice que es rhscl/ no es esa exactamente, está en el registro dado )  
+ 
+ $ oc new-app --name exam1 $registry/httpd:2.4~https://github.com/user/DO288-apps#exam1 --content-dir s2i-scripts
+ $ oc logs bc/exam1 -f # revisamos los echo
+ $ oc rsh exam1-ZXXX # verificamos los ficheros
+ $ oc expose svc exam1
+ $ oc get routes
+ $ oc curl $url/info.html
+ $ oc curl $url
+ 
+ 

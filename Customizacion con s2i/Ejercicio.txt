@@ -1,0 +1,16 @@
+Se facilita el siguiente proyecto
+   | - index.html
+   | - .s2i
+		/bin
+			| - assemble
+			| - run
+  
+   Se pide customizar y desplegar proyecto :
+		- Añadiendo un fichero info.html que indique la fecha de creación en formato YYYY MM DD con el siguiente texto "Page built on $DATE" 
+		- Copiar info.html y index.html a la carpeta raiz del servidor
+		- verficar que funciona y se pueden visualizar desde curl ambas rutas
+		
+
+ 
+	
+	

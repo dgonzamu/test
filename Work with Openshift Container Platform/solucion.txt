@@ -1,0 +1,12 @@
+$ oc describe deploy/exam1 | grep -A1  "Live"
+$ oc describe deploy/exam1 | grep -A1  "Readi"
+
+$ oc set probe deploy/exam1 --readiness --open-tcp=8080 --initial-delay-seconds 30 --timeout-seconds 5
+$ oc set probe deploy/exam1 --liveness --open-tcp=8080 --initial-delay-seconds 30 --timeout-seconds 5
+
+$ oc describe deploy/exam1 | grep -A1  "Live"
+$ oc describe deploy/exam1 | grep -A1  "Readi"
+
+$ oc get deploy/exam1 
+esperar a que este ready
+

@@ -1,0 +1,11 @@
+Work with imageStreams
+
+Piden dos cosas:
+* Exponer la ruta del image-registry
+* Descargar una imagen de un project (namespace) al que el usuario de Openshift no tiene acceso
+
+
+Nota: El usuario tiene permisos limitados, pero los justos para poder exponer la ruta. Esto significa:
+* No se pueden consultar CRD (oc get crd | grep image)
+* No se tiene acceso al namespace openshift-image-registry (get/list) de practicamente nada.
+* Aunque se puede ver mediante la consola web en "Api Search" el tipo, no sirve de nada si no sabes el nombre del recurso a editar

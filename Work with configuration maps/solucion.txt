@@ -1,0 +1,22 @@
+$ git clone https://github.com/user/DO288-apps
+$ cd DO288-apps/s2i-scripts
+$ git checkout main
+
+$ oc new-app --name deploymap httpd:2.4  --as-deployment-config
+ 
+ 
+ $ oc logs dc/deploymap
+ $ oc set triggers dc/deploymap --from-config --remove
+ $ oc create cm sedice --from-literal var=test
+ $ oc describe cm sedice
+ $ oc set env dc/deploymap  --from cm/sedice
+ $ oc describe dc/deploymap | grep -A3 Env
+ $ oc set triggers dc/deploymap --from-config cm/sedice
+ # forzamos  actualizar
+ 
+ 
+ 
+ $ oc expose svc deploymap
+ $ oc get routes
+ $ oc curl $url
+ 

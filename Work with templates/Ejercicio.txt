@@ -1,0 +1,9 @@
+Te dan a elegin una ruta con un json o un yaml que tiene una template: En nuestro caso descargaremos la plantilla de rails-postgresql-example del proyecto openshift
+ - Crear proyecto
+ - Crear el template del proyecto
+ - Inluir param1 como parámetro opciona con valor value1
+ - Buscar dos imagenes httpd y mysql. Modificar template para que use esas imagenes
+ - Asegurar que oc delete all -l mylabel=test... elimine todas las imagenes generadas por el comando
+ - Editar readines y liveness con los puertos/protocolos correcto
+ - Procesar y crear objetos del template 
+ Nota: aplicar el template y ver que despliega correctamente la APP

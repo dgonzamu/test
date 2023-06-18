@@ -1,0 +1,37 @@
+Te dan a elegin una ruta con un json o un yaml que tiene una template: En nuestro caso descargaremos la plantilla de rails-postgresql-example del proyecto openshift
+	$oc get template rails-postgresql-example -n openshift -o yaml > rails-postgresql-example.yaml
+ - Crear proyecto
+	$oc new-prokect tesst2
+ - Crear el template del proyecto
+    Eliminamos con vim en namespace del proyecto
+	$oc create -f rails-postgresql-example.yaml
+ - Inluir param1 como parámetro opciona con valor value1
+	editar yaml sección final para incluir 
+		parameters:
+		  - name: param1
+			description: "value"
+			value: value1
+	
+ - Buscar dos imagenes j y mysql. Modificar template para que use esas imagenes
+		$oc get istag -n openshift | grep mysql
+		$oc get istag -n openshift | grep php
+		editar el template, el cambio se hará sobre el trigger (triggers ->imagechangeparams -> from) añadir name y namespace(openshift) 
+
+ - Asegurar que oc delete all -l mylabel=test... elimine todas las imagenes generadas por el comando
+	añadimos a nivel de raiz lo siguiente (revisar que no esté al principio)
+		labels:
+			mylabel: test
+ - Editar readines y liveness con los puertos/protocolos correcto
+		editar puertos para que apunte al 3306
+		editar readines y healt para que apunten a --open-tcp:8080 y 3306	
+		
+ - Procesar y crear objetos del template 
+		$oc process -f rails-postgresql-example.yaml | oc apply -f -
+		$oc get pods (verificar que funcionan) 
+			editar template y corregir
+				elmininar pre-hook	
+				añadir las variables de MSYQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE
+				
+		ejecutar 
+			$oc new-app --name template --template rails-postgresql-example.yaml
+ Nota: aplicar el template y ver que despliega correctamente la APP

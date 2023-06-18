@@ -1,0 +1,3 @@
+Crear aplicacion con probes de liveness con initial-delay-seconds y timeout-seconds
+  
+  Nota: utilizamos ejercicio "Customizacion con s2i" llamado deploy/exam1deploy/exam1

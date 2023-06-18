@@ -1,0 +1,7 @@
+$ oc describe bc/exam1 | grep -A1  "Commit Hook"
+
+$ oc set build-hook --post-commit bc/exam1 --command -- echo "Compilado en fecha $(date '+%Y %m %u'  )"
+
+$ oc start-build bc/exam1 -F
+$ oc logs bc/exam1 | grep Compilado
+$ oc describe bc/exam1 | grep -A1  "Commit Hook"

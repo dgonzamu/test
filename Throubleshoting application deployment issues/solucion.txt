@@ -1,0 +1,25 @@
+
+Crear applicación 
+ $ git commit main
+ $ git commit -b source-build
+ $ git push -u origin source-build
+ $ oc new-app --name test3 --build-env npm_config_registry=http://${RHT_OCP4_NEXUS_SERVER}/repository/nodejs  nodejs:16-ubi8~https://github.com/${RHT_OCP4_GITHUB_USER}/DO288-apps#source-build --context-dir nodejs-helloworld
+ $ oc logs dc/test3
+		 ---> Installing all dependencies
+		npm ERR! code EJSONPARSE
+		npm ERR! file /opt/app-root/src/package.json
+		npm ERR! JSON.parse Failed to parse json
+		npm ERR! JSON.parse Unexpected string in JSON at position 241 while parsing '{
+		npm ERR! JSON.parse   "name": "nodejs-helloworld",
+		npm ERR! JSON.parse   "vers'
+		npm ERR! JSON.parse Failed to parse package.json data.
+		npm ERR! JSON.parse package.json must be actual JSON, not just JavaScript.
+		...output omitted...
+ Examinamos el error
+ $ vim package.json (editamos los : que faltan)
+ $ git commit -am source-build
+ $ git push
+ $ oc start-deploy -F
+ $ oc get logs test3 
+ $ oc expose svc test3 
+ $ curl localhost:8080

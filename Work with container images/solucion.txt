@@ -1,0 +1,39 @@
+Crear fichero Containerfile en carpeta parent y otra child
+
+Desde parent compilamos comprobamos el número de imagenes
+	$ podman build -t parent .
+	$ podman image tree parent
+	Reducir el número de capas, aplicar seguridad, y reducir el tamaño
+	 # eliminar los RUNs substituyendolos por && \
+	 # no se si es necesario, pero buena práctica hacer rm -rf /run/httpd /run/httpd
+	 # configurar usuario 1001
+	 # Modificar permisos al usuario configurar
+			RUN chgrp -R 0 /var/log/httpd /var/run/httpd && \
+			chmod -R g=u /var/log/httpd /var/run/
+	 EXPOSE 8080
+		RUN sed -i "s/Listen 80/Listen 8080/g" /etc/httpd/conf/httpd.conf 
+		RUN sed -i "s/#ServerName www.example.com:80/ServerName 0.0.0.0:8080/g" /etc/httpd/conf/httpd.conf
+			#Si no sabemos las rutas o literales que hay que cambiar, se puede hacer egrep -R 80 /etc
+	Compilar, revisar capas y probar que funciona*:
+	 $ podman build -t parent .
+	 $ podman run -p 8080:80 -d  parent
+	 $ curl locahost:8080
+
+	Añadir herencia
+		ONBUILD COPY src ./
+	 # Compilar y arrancar de nuevo
+	   $ podman build -t parent . --format docker
+	   $ podman run -p 8080:8080 -d  parent 
+	   $ curl locahost:8080
+	   $ podman tag parent quay.io/user/parent
+	   $ podman push quay.io/user/parent
+	   $ curl locahost:8080
+	Probamos herencia, creando un Containerfile en la carpeta child con el contenido 
+		FROM quay.io/user/parent
+	 $ cd child
+	 $ podman build -t child .
+	 
+	 Si nos falla pidiendo la carpeta src, es que está heredando de parent.
+
+
+
