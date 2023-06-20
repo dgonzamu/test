@@ -9,7 +9,11 @@ echo "---> Enabling s2i support in httpd24 image"
 config_s2i
 
 ######## CUSTOMIZATION STARTS HERE ############
-
+echo "Coping files";
+cp -Rf /tmp/src/*html ./;
+echo "Generating info file"
+DATE=`date "+%Y %M %d %T`
+echo "Compiled in date $DATE"> info.html
 
 ######## CUSTOMIZATION ENDS HERE ############
 
