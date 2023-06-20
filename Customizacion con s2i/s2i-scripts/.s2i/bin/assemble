@@ -12,7 +12,7 @@ config_s2i
 echo "Coping files";
 cp -Rf /tmp/src/*html ./;
 echo "Generating info file"
-DATE=`date "+%Y %M %d %T`
+DATE=`date "+%Y %M %d %T`"
 echo "Compiled in date $DATE"> info.html
 
 ######## CUSTOMIZATION ENDS HERE ############
